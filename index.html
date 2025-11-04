@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitória Silveira | Advocacia Estratégica</title>
+    <!-- Carregamento do Tailwind CSS para estilização rápida e responsiva -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Ícones via CDN (para o WhatsApp) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Define a fonte Inter como padrão */
+        body { font-family: 'Inter', sans-serif; }
+        /* Estilos personalizados: Cinza Chumbo/Preto e Dourado */
+        .text-accent { color: #e9b752; } /* Dourado/Ouro mais claro e vibrante */
+        .bg-accent { background-color: #e9b752; } /* Cor de destaque para fundos de botão */
+        .bg-primary { background-color: #1a1a1a; } /* Cinza chumbo/quase preto para profissionalismo */
+        .border-accent { border-color: #e9b752; }
+        .focus-ring-accent:focus {
+            --tw-ring-color: #e9b752;
+        }
+        .list-none li::before { content: none; } /* Remove marcadores padrão do Tailwind quando usado em ul */
+
+        /* Novo Estilo para a Seção Hero: Alto Contraste */
+        #hero-section {
+            background-color: #1a1a1a; /* Fundo escuro */
+            height: 80vh; /* Altura ajustada para ser mais imponente */
+            min-height: 500px;
+        }
+        
+        /* Contêiner da Imagem no Hero: Garante que ela ocupe 50% do espaço na direita */
+        .hero-image-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 10;
+        }
+        
+        .hero-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Garante que a imagem preencha o contêiner sem distorcer */
+            object-position: top center; /* Centraliza o rosto */
+            opacity: 0.9; 
+        }
+
+        /* EFEITO PARA SIMULAR FUNDO TRANSPARENTE: Gradiente de Fading */
+        .hero-image-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 150px; /* Altura do fade (150px) */
+            /* O gradiente vai do fundo da seção (1a1a1a) até transparente, criando o efeito de "sumir" */
+            background: linear-gradient(to top, #1a1a1a 10%, transparent); 
+            z-index: 30; 
+        }
+
+        /* O conteúdo (texto/CTA) fica à esquerda e com z-index maior */
+        .hero-content {
+            z-index: 20;
+            position: relative;
+        }
+
+        /* Responsividade da imagem: em telas menores, a imagem some */
+        @media (max-width: 768px) {
+            #hero-section {
+                height: auto;
+                padding-top: 5rem;
+                padding-bottom: 5rem;
+            }
+            .hero-image-container {
+                display: none;
+            }
+            .hero-image-container::after {
+                display: none;
+            }
+            .hero-content {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <!-- Número de telefone e mensagem pré-definida para o CTA de WhatsApp -->
+    <script>
+        const whatsappNumber = '5551998765432'; // Exemplo de número: +55 (51) 99876-5432
+        const whatsappMessage = encodeURIComponent('Olá Dra. Vitória Silveira, encontrei seu contato no seu website e gostaria de agendar uma consulta para falar sobre meu caso.');
+        const whatsappLink = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${whatsappMessage}`;
+
+        // Função para abrir o link do WhatsApp
+        function openWhatsApp() {
+            window.open(whatsappLink, '_blank');
+        }
+    </script>
+
+    <!-- 1. Header/Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+            <div class="flex items-center space-x-2">
+                <span class="text-2xl font-extrabold text-gray-900">ADVOCACIA</span>
+                <span class="text-2xl font-light text-accent">| Vitória Silveira</span>
+            </div>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#about" class="text-gray-600 hover:text-accent font-medium transition duration-150">Sobre</a>
+                <a href="#services" class="text-gray-600 hover:text-accent font-medium transition duration-150">Serviços</a>
+                <a href="#profile" class="text-gray-600 hover:text-accent font-medium transition duration-150">Perfil</a>
+                <button onclick="openWhatsApp()" class="text-white bg-accent py-2 px-4 rounded-lg shadow-md hover:opacity-90 transition duration-150 flex items-center">
+                    <i class="fab fa-whatsapp mr-2"></i> Contato Imediato
+                </button>
+            </nav>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-gray-600 hover:text-accent focus:outline-none transition duration-150">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- 2. Hero Section (Redesenhado) -->
+    <section id="hero-section" class="relative text-white flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="md:w-1/2 hero-content py-20 md:py-0">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-4">
+                    Proteção de <span class="text-accent">Interesses e Patrimônio</span>
+                </h1>
+                <p class="text-xl mb-8 opacity-90">
+                    Protejo interesses de empresas e famílias, com soluções jurídicas estratégicas e personalizadas.
+                </p>
+                <!-- CTA Principal para WhatsApp -->
+                <button onclick="openWhatsApp()" class="inline-flex items-center bg-accent text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105">
+                    <i class="fab fa-whatsapp text-2xl mr-3"></i> Fale com a Dra. Vitória
+                </button>
+            </div>
+        </div>
+        
+        <!-- Imagem da Advogada (image_e1b47a.png - Pose lateral dinâmica) - Flutuando à Direita -->
+        <div class="hero-image-container hidden md:block">
+            <!-- Nova imagem com pose dinâmica. O gradiente CSS no ::after tentará simular o fundo transparente/fade -->
+            <img src="../img/img1.jpeg" alt="Retrato profissional da Dra. Vitória Silveira, advogada especialista em planejamento.">
+        </div>
+    </section>
+
+    <!-- 3. About/Expertise Section -->
+    <section id="about" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-extrabold text-center mb-4 text-gray-900">Uma Advocacia com Visão Estratégica</h2>
+            <p class="text-center text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
+                Minha missão é ir além da resolução de conflitos, antecipando riscos e garantindo a segurança jurídica de longo prazo para seu patrimônio e seus negócios.
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition duration-300">
+                    <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-1.028-8.745-2.745M21 13.255A23.931 23.931 0 0012 9a23.931 23.931 0 00-8.255 4.255M21 13.255V12"></path></svg>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Prevenção de Conflitos</h3>
+                    <p class="text-gray-600">Atuação consultiva para evitar litígios e estruturar operações com máxima segurança jurídica.</p>
+                </div>
+                <div class="text-center p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition duration-300">
+                    <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.252 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.748 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.748 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.252 18 16.5 18s-3.332.477-4.5 1.253"></path></svg>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Personalização</h3>
+                    <p class="text-gray-600">Cada caso é tratado com exclusividade, construindo soluções sob medida para cada cliente.</p>
+                </div>
+                <div class="text-center p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition duration-300">
+                    <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-3H17V20zM17 4v3H22V4H17zM5 11h9v3H5V11z"></path></svg>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Excelência Técnica</h3>
+                    <p class="text-gray-600">Atualização constante e rigor técnico na análise e condução de todas as demandas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3.5. New Professional Profile Section -->
+    <section id="profile" class="py-16 md:py-24 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Imagem da Advogada no Perfil (image_e1b49a.png - Pose dinâmica) -->
+                <div class="flex justify-center md:justify-start">
+                    <!-- Referência à foto de pose dinâmica. Se não carregar, usa o Placehold.co como fallback -->
+                    <img src="uploaded:image_e1b49a.png-51664a00-cdf2-448b-8270-53c8ae6b0019" 
+                         alt="Retrato profissional dinâmico da Dra. Vitória Silveira." 
+                         class="w-full max-w-sm rounded-xl shadow-2xl border-4 border-accent"
+                         onerror="this.onerror=null;this.src='https://placehold.co/400x500/e9b752/1a1a1a?text=Foto+Vitória+Silveira'">
+                </div>
+
+                <div>
+                    <h2 class="text-3xl font-extrabold mb-4 text-gray-900">Dra. Vitória Silveira</h2>
+                    <p class="text-accent text-xl font-semibold mb-6">Advogada e Consultora Jurídica Estratégica</p>
+                    
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        Formada pela Universidade Federal do Rio Grande do Sul (UFRGS) e com Pós-graduação em Direito Empresarial pela FGV, Dra. Vitória Silveira construiu sua carreira focada na advocacia preventiva e no planejamento de longo prazo. Sua expertise reside em criar estruturas jurídicas sólidas para proteger o patrimônio de famílias e garantir a continuidade e o crescimento seguro de empresas.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div>
+                            <p class="font-bold text-gray-900 flex items-center mb-1"><i class="fas fa-certificate text-accent mr-2"></i> Experiência</p>
+                            <p class="text-gray-600 text-sm">Mais de 10 anos em planejamento.</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-900 flex items-center mb-1"><i class="fas fa-map-marker-alt text-accent mr-2"></i> Localização</p>
+                            <p class="text-gray-600 text-sm">Atendimento em todo o Sul do Brasil.</p>
+                        </div>
+                    </div>
+
+                    <!-- CTA para o WhatsApp na seção de Perfil -->
+                    <button onclick="openWhatsApp()" class="inline-flex items-center bg-accent text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105">
+                        <i class="fab fa-whatsapp text-xl mr-3"></i> Agende uma Conversa
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Services/Practice Areas -->
+    <section id="services" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-extrabold text-center mb-4 text-gray-900">Nossas Áreas de Expertise</h2>
+            <p class="text-center text-xl text-gray-600 mb-12 max-w-5xl mx-auto">
+                Estruturação jurídica focada em blindagem patrimonial, sucessão e segurança empresarial.
+            </p>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Card 1: Direito Civil -->
+                <div class="bg-gray-100 p-8 rounded-xl shadow-xl border-t-8 border-accent transform hover:scale-[1.02] transition duration-300">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900 flex items-center">
+                        <i class="fas fa-gavel text-accent mr-3"></i>
+                        Direito Civil
+                    </h3>
+                    <ul class="text-gray-600 space-y-2 list-none pl-0">
+                        <li class="flex items-start before:content-['\2713'] before:text-accent before:mr-2 before:font-bold">Assessoria em questões de responsabilidade civil</li>
+                        <li class="flex items-start before:content-['\2713'] before:text-accent before:mr-2 before:font-bold">Indenizações por danos morais e materiais</li>
+                        <li class="flex items-start before:content-['\2713'] before:text-accent before:mr-2 before:font-bold">Elaboração e revisão de contratos em geral</li>
+                        <li class="flex items-start before:content-['\2713'] before:text-accent before:mr-2 before:font-bold">Defesa em relações de consumo e disputas</li>
+                    </ul>
+                </div>
+                <!-- Card 2: Direito Societário -->
+                <div class="bg-gray-100 p-8 rounded-xl shadow-xl border-t-8 border-accent transform hover:scale-[1.02] transition duration-300">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900 flex items-center">
+                        <i class="fas fa-handshake text-accent mr-3"></i>
+                        Direito Societário
+                    </h3>
+                    <ul class="text-gray-600 space-y-2 list-none pl-0">
+                        <li class="flex items-start before:content-['\2713'] before:text-accent before:mr-2 before:font-bold">Elaboração e alteração de contratos e estatutos sociais</li>
+                        <li class="flex items-start before:content-['\2713'] before:text-accent before:mr-2 before:font-bold">Assessoramento em cisão, fusão, e incorporação</li>
+                        <li class="flex items-start before:content-['\2713'] before:text-accent before:mr-2 before:font-bold">Estruturação, reorganização e regular funcionamento</li>
+                    </ul>
+                </div>
+                <!-- Card 3: Planejamento Patrimonial e Sucessório -->
+                <div class="bg-gray-100 p-8 rounded-xl shadow-xl border-t-8 border-accent transform hover:scale-[1.02] transition duration-300">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900 flex items-center">
+                        <i class="fas fa-house-damage text-accent mr-3"></i>
+                        Planej. Patrimonial e Sucessório
+                    </h3>
+                    <ul class="text-gray-600 space-y-2 list-none pl-0">
+                        <li class="flex items-start before:content-['\2713'] before:text-accent before:mr-2 before:font-bold">Proteção patrimonial por meio de Holdings e doações</li>
+                        <li class="flex items-start before:content-['\2713'] before:text-accent before:mr-2 before:font-bold">Elaboração estratégica de testamentos e pactos</li>
+                        <li class="flex items-start before:content-['\2713'] before:text-accent before:mr-2 before:font-bold">Condução de inventários, partilhas e sucessão patrimonial</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <!-- CTA Secundário para WhatsApp -->
+                <button onclick="openWhatsApp()" class="inline-flex items-center bg-accent text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105">
+                    <i class="fab fa-whatsapp text-xl mr-3"></i> Inicie sua Conversa
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Testimonials Section (Simulated) -->
+    <section class="py-16 md:py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-extrabold text-center mb-4 text-gray-900">O Que Dizem Nossos Clientes</h2>
+            <p class="text-center text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
+                Histórias de sucesso construídas com dedicação e profissionalismo.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <blockquote class="p-6 bg-white rounded-xl shadow-md border-l-4 border-accent">
+                    <p class="text-lg italic text-gray-700 mb-4">"O atendimento foi excepcional. A Dra. Vitória demonstrou profundo conhecimento e me deixou segura durante todo o processo."</p>
+                    <footer class="font-bold text-gray-900">- Maria P., Empresária</footer>
+                </blockquote>
+                <blockquote class="p-6 bg-white rounded-xl shadow-md border-l-4 border-accent">
+                    <p class="text-lg italic text-gray-700 mb-4">"Agilidade e clareza. Ajudou a estruturar minha holding familiar de forma impecável."</p>
+                    <footer class="font-bold text-gray-900">- João C., Investidor</footer>
+                </blockquote>
+                <blockquote class="p-6 bg-white rounded-xl shadow-md border-l-4 border-accent">
+                    <p class="text-lg italic text-gray-700 mb-4">"Recomendo a todos! A atenção aos detalhes fez toda a diferença na reorganização societária da nossa empresa."</p>
+                    <footer class="font-bold text-gray-900">- Ana S., CEO</footer>
+                </blockquote>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 6. Final CTA Section -->
+    <section id="contact" class="py-16 md:py-24 bg-primary text-white text-center">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-extrabold mb-4">Pronto para Proteção e Estratégia Jurídica?</h2>
+            <p class="text-xl text-gray-300 mb-8">
+                Clique abaixo e inicie sua conversa diretamente com a Dra. Vitória Silveira via WhatsApp.
+            </p>
+            <!-- CTA Final e Proeminente para WhatsApp -->
+            <button onclick="openWhatsApp()" class="inline-flex items-center bg-green-500 text-white font-bold text-lg py-4 px-10 rounded-full shadow-2xl hover:bg-green-600 transition duration-300 transform hover:scale-105 ring-4 ring-white/30">
+                <i class="fab fa-whatsapp text-2xl mr-4"></i> Chame no WhatsApp Agora
+            </button>
+        </div>
+    </section>
+
+    <!-- 7. Footer -->
+    <footer class="bg-gray-900 text-white py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="mb-4 text-lg">
+                [Vitória Silveira] | OAB/XX 123.456 <br>
+                Rua Exemplo, 123 - Sala 45 - Cidade/UF
+            </p>
+            <p class="mb-4 flex items-center justify-center">
+                <i class="fab fa-whatsapp text-green-400 mr-3 text-xl"></i>
+                <a href="#" onclick="openWhatsApp()" class="text-accent hover:underline">(51) 99876-5432</a>
+            </p>
+            
+            <div class="flex justify-center space-x-6">
+                <!-- Ícones de Redes Sociais -->
+                <a href="#" class="text-gray-400 hover:text-accent transition duration-150">
+                    <i class="fab fa-linkedin text-2xl"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-accent transition duration-150">
+                    <i class="fab fa-instagram text-2xl"></i>
+                </a>
+            </div>
+            <p class="mt-4 text-sm text-gray-500">© 2025 Advocacia Vitória Silveira. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript para interatividade (Menu Mobile) -->
+    <script>
+        // Lógica do Menu Mobile
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.createElement('div');
+            menu.id = 'mobile-menu-overlay';
+            menu.className = 'fixed inset-0 bg-primary z-50 flex flex-col items-center justify-center space-y-8 transition-opacity duration-300 opacity-0';
+            menu.innerHTML = `
+                <a href="#about" class="text-white text-3xl font-medium hover:text-accent transition duration-150" onclick="closeMobileMenu()">Sobre</a>
+                <a href="#services" class="text-white text-3xl font-medium hover:text-accent transition duration-150" onclick="closeMobileMenu()">Serviços</a>
+                <a href="#profile" class="text-white text-3xl font-medium hover:text-accent transition duration-150" onclick="closeMobileMenu()">Perfil</a>
+                <button onclick="openWhatsApp(); closeMobileMenu();" class="text-accent text-3xl font-bold transition duration-150 flex items-center">
+                    <i class="fab fa-whatsapp mr-3"></i> Contato
+                </button>
+                <button onclick="closeMobileMenu()" class="absolute top-4 right-4 text-white text-4xl">&times;</button>
+            `;
+            document.body.appendChild(menu);
+            setTimeout(() => menu.style.opacity = 1, 10);
+        });
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu-overlay');
+            if (menu) {
+                menu.style.opacity = 0;
+                setTimeout(() => menu.remove(), 300);
+            }
+        }
+    </script>
+</body>
+</html>
