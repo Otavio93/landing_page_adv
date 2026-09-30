@@ -6,125 +6,222 @@
     <title>Vitória Silveira | Advocacia Estratégica</title>
     <!-- Carregamento do Tailwind CSS para estilização rápida e responsiva -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <!-- Ícones via CDN (para o WhatsApp) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        :root {
+            --gold: #c9a45b;
+            --gold-soft: #d4b978;
+            --ink: #111111;
+            --hero: #0d0d0d;
+        }
         body { font-family: 'Inter', sans-serif; }
-        /* Estilos personalizados: Cinza Chumbo/Preto e Dourado */
-        .text-accent { color: #e9b752; } /* Dourado/Ouro mais claro e vibrante */
-        .bg-accent { background-color: #e9b752; } /* Cor de destaque para fundos de botão */
-        .bg-primary { background-color: #1a1a1a; } /* Cinza chumbo/quase preto para profissionalismo */
-        .border-accent { border-color: #e9b752; }
-        .focus-ring-accent:focus {
-            --tw-ring-color: #e9b752;
-        }
-        .list-none li::before { content: none; } /* Remove marcadores padrão do Tailwind quando usado em ul */
-        .dflex {
-            display: flex;
-            align-items: start;
-            justify-content: center;
-            margin: 4em auto;
-        }
+        .font-serif-display { font-family: 'Playfair Display', serif; }
+        .font-serif-body { font-family: 'Cormorant Garamond', serif; }
+        .text-accent { color: #c9a45b; }
+        .bg-accent { background-color: #c9a45b; }
+        .bg-primary { background-color: #1a1a1a; }
+        .border-accent { border-color: #c9a45b; }
+        .focus-ring-accent:focus { --tw-ring-color: #c9a45b; }
+        .list-none li::before { content: none; }
 
-        .container-one {
-            background: #6c6872;
-            height: 20em;
-            width: 20em;
-            border-radius: 50%;
-            overflow: hidden;
-            position: relative;
+        #site-header {
+            background: #0b0b0b;
+            border-bottom: 1px solid rgba(201, 164, 91, 0.18);
         }
+        .brand-mark {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid var(--gold);
+            color: #f4ead4;
+            letter-spacing: 0.28em;
+            font-size: 0.72rem;
+            font-weight: 500;
+            padding: 0.55rem 0.9rem;
+        }
+        .nav-link {
+            color: #d7d2c8;
+            letter-spacing: 0.22em;
+            font-size: 0.68rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        .nav-link:hover { color: var(--gold-soft); }
 
-        .container-one img {
-            position: absolute;
-            width: 173%;
-            height: 180%;
-            object-fit: cover;
-            top: 50%;
-            left: 50%;
-            transform: translate(-62%, -39%);
-            border-radius: 50%;
-        }
-
-        .container-one::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            width: 150px;
-            background: linear-gradient(to left, #e0c3c3 10%, transparent);
-            z-index: 30;
-        }
-
-        .container-two {
-            background: #6c6872;
-            height: 43em;
-            width: 30em;
-        }
-        /* Novo Estilo para a Seção Hero: Alto Contraste */
         #hero-section {
-            background-color: #1a1a1a; /* Fundo escuro */
-            height: 80vh; /* Altura ajustada para ser mais imponente */
-            min-height: 500px;
+            position: relative;
+            background: var(--hero);
+            min-height: calc(100vh - 72px);
+            display: flex;
+            align-items: center;
+            overflow: hidden;
         }
-        
-        /* Contêiner da Imagem no Hero: Garante que ela ocupe 50% do espaço na direita */
         .hero-image-container {
             position: absolute;
-            top: 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 10;
+            inset: 0 0 0 38%;
+            z-index: 1;
         }
-        
         .hero-image-container img {
-            /* width: 100%; */
+            width: 100%;
             height: 100%;
-            /* object-fit: cover; */
-            object-position: top center; /* Centraliza o rosto */
-            opacity: 0.9; 
-            margin: 0 auto;
+            object-fit: cover;
+            object-position: center 12%;
+            filter: grayscale(0.18) brightness(0.62) contrast(1.08);
         }
-
-        /* EFEITO PARA SIMULAR FUNDO TRANSPARENTE: Gradiente de Fading */
+        .hero-image-container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, var(--hero) 0%, rgba(13,13,13,0.72) 22%, rgba(13,13,13,0.18) 55%, rgba(13,13,13,0.35) 100%);
+            z-index: 2;
+        }
         .hero-image-container::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 150px; /* Altura do fade (150px) */
-            /* O gradiente vai do fundo da seção (1a1a1a) até transparente, criando o efeito de "sumir" */
-            background: linear-gradient(to top, #1a1a1a 10%, transparent); 
-            z-index: 30; 
+            inset: 0;
+            background: linear-gradient(180deg, rgba(13,13,13,0.25) 0%, transparent 30%, rgba(13,13,13,0.55) 100%);
+            z-index: 2;
         }
-
-        /* O conteúdo (texto/CTA) fica à esquerda e com z-index maior */
         .hero-content {
-            z-index: 20;
             position: relative;
+            z-index: 10;
+            max-width: 42rem;
+        }
+        .hero-kicker {
+            letter-spacing: 0.38em;
+            font-size: 0.72rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: #f3ead8;
+            letter-spacing: 0.12em;
+            line-height: 1.05;
+            text-transform: uppercase;
+        }
+        .hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 400;
+            color: #cfc6b4;
+            font-size: 1.45rem;
+            line-height: 1.45;
+        }
+        .btn-gold {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gold);
+            color: #1a1408;
+            letter-spacing: 0.18em;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            min-width: 11.5rem;
+            padding: 0.95rem 1.6rem;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        .btn-gold:hover { background: #d8b56a; }
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(243, 234, 216, 0.7);
+            color: #f3ead8;
+            letter-spacing: 0.18em;
+            font-size: 0.72rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            min-width: 11.5rem;
+            padding: 0.95rem 1.6rem;
+            background: transparent;
+            transition: border-color 0.2s ease, color 0.2s ease;
+        }
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
         }
 
-        /* Responsividade da imagem: em telas menores, a imagem some */
-        @media (max-width: 768px) {
-            #hero-section {
-                height: auto;
-                padding-top: 5rem;
-                padding-bottom: 5rem;
+        #statement {
+            background: #fbfbfb;
+            padding: 5.5rem 0 6rem;
+        }
+        .statement-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+            gap: 4.5rem;
+            align-items: center;
+        }
+        .portrait-wrap {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 2rem;
+        }
+        .portrait-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 18%;
+            border-radius: 50%;
+            filter: grayscale(0.12) contrast(1.04);
+        }
+        .quote-mark {
+            position: absolute;
+            top: -0.35rem;
+            left: -0.85rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 5.5rem;
+            line-height: 1;
+            color: var(--gold);
+            z-index: 2;
+        }
+        .statement-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.55rem;
+            line-height: 1.55;
+            color: #4a4a4a;
+            text-align: center;
+            max-width: 28rem;
+            margin: 0 auto;
+        }
+        .statement-cite {
+            display: block;
+            margin-top: 1.15rem;
+            text-align: center;
+            font-size: 0.82rem;
+            letter-spacing: 0.04em;
+            color: #8a8a8a;
+        }
+        .justice-frame {
+            overflow: hidden;
+            background: #1a1a1a;
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+        }
+        .justice-frame img {
+            display: block;
+            width: 100%;
+            height: 460px;
+            object-fit: cover;
+            object-position: center 20%;
+            filter: grayscale(1) contrast(1.08) brightness(0.92);
+        }
+
+        @media (max-width: 900px) {
+            .hero-image-container { inset: 0; opacity: 0.55; }
+            .hero-image-container::before {
+                background: linear-gradient(180deg, rgba(13,13,13,0.72) 0%, rgba(13,13,13,0.88) 100%);
             }
-            .hero-image-container {
-                display: none;
+            #hero-section { min-height: 640px; }
+            .statement-grid {
+                grid-template-columns: 1fr;
+                gap: 2.75rem;
             }
-            .hero-image-container::after {
-                display: none;
-            }
-            .hero-content {
-                width: 100%;
-            }
+            .justice-frame img { height: 360px; }
         }
     </style>
 </head>
@@ -142,56 +239,63 @@
         }
     </script>
 
-    <!-- 1. Header/Navigation -->
-    <header class="bg-white shadow-md sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-            <div class="flex items-center space-x-2">
-                <span class="text-2xl font-extrabold text-gray-900">ADVOCACIA</span>
-                <span class="text-2xl font-light text-accent">| Vitória Silveira</span>
-            </div>
-            <nav class="hidden md:flex space-x-8 items-center">
-                <a href="#about" class="text-gray-600 hover:text-accent font-medium transition duration-150">Sobre</a>
-                <a href="#services" class="text-gray-600 hover:text-accent font-medium transition duration-150">Serviços</a>
-                <a href="#profile" class="text-gray-600 hover:text-accent font-medium transition duration-150">Perfil</a>
-                <button onclick="openWhatsApp()" class="text-white bg-accent py-2 px-4 rounded-lg shadow-md hover:opacity-90 transition duration-150 flex items-center">
-                    <i class="fab fa-whatsapp mr-2"></i> Contato Imediato
-                </button>
+    <header id="site-header" class="sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-[72px]">
+            <a href="#hero-section" class="brand-mark">SILVEIRA</a>
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#about" class="nav-link">Sobre</a>
+                <a href="#services" class="nav-link">Áreas de atuação</a>
+                <a href="#profile" class="nav-link">Perfil</a>
+                <a href="#contact" class="nav-link">Contato</a>
             </nav>
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-gray-600 hover:text-accent focus:outline-none transition duration-150">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            <div class="hidden md:flex items-center gap-5 text-[#d7d2c8]">
+                <a href="#" aria-label="LinkedIn" class="hover:text-accent transition"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Instagram" class="hover:text-accent transition"><i class="fab fa-instagram"></i></a>
+            </div>
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-[#d7d2c8] hover:text-accent focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </button>
         </div>
     </header>
 
-    <section id="hero-section" class="relative text-white flex items-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div class="md:w-1/2 hero-content py-20 md:py-0">
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-4">
-                    Proteção de <span class="text-accent">Interesses e Patrimônio</span>
-                </h1>
-                <p class="text-xl mb-8 opacity-90">
-                    Protejo interesses de empresas e famílias, com soluções jurídicas estratégicas e personalizadas.
-                </p>
-                <!-- CTA Principal para WhatsApp -->
-                <button onclick="openWhatsApp()" class="inline-flex items-center bg-accent text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105">
-                    <i class="fab fa-whatsapp text-2xl mr-3"></i> Fale com a Dra. Vitória
-                </button>
-            </div>
+    <section id="hero-section">
+        <div class="hero-image-container">
+            <img src="img/img1.jpeg" alt="Retrato profissional da Dra. Vitória Silveira">
         </div>
-        
-        <!-- Imagem da Advogada (image_e1b47a.png - Pose lateral dinâmica) - Flutuando à Direita -->
-        <div class="hero-image-container hidden md:block">
-            <!-- Nova imagem com pose dinâmica. O gradiente CSS no ::after tentará simular o fundo transparente/fade -->
-            <img src="../img/img1.jpeg" alt="Retrato profissional da Dra. Vitória Silveira, advogada especialista em planejamento.">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-24">
+            <div class="hero-content">
+                <p class="hero-kicker">Advocacia estratégica</p>
+                <h1 class="hero-title text-4xl sm:text-5xl lg:text-[4.4rem] mb-6">
+                    Vitória<br>Silveira
+                </h1>
+                <p class="hero-subtitle mb-10">
+                    Proteção de interesses, patrimônio e negócios — com soluções jurídicas precisas e personalizadas.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#about" class="btn-gold">Saiba mais</a>
+                    <button type="button" onclick="openWhatsApp()" class="btn-outline">Contato</button>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="dflex">
-        <div class="container-one">
-            <img src="../img/img2.jpeg" alt="">
-        </div>
-        <div class="container-two">
+    <section id="statement">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="statement-grid">
+                <div>
+                    <div class="portrait-wrap">
+                        <span class="quote-mark" aria-hidden="true">“</span>
+                        <img src="img/img2.jpeg" alt="Dra. Vitória Silveira">
+                    </div>
+                    <blockquote class="statement-quote">
+                        Cada demanda é conduzida com rigor técnico, antecipando riscos e protegendo o que realmente importa: a segurança jurídica de famílias e empresas.
+                    </blockquote>
+                    <cite class="statement-cite">— Dra. Vitória Silveira</cite>
+                </div>
+                <div class="justice-frame">
+                    <img src="img/pexels-pavel-danilyuk-8112201.jpg" alt="Estátua da Justiça, símbolo da advocacia">
+                </div>
+            </div>
         </div>
     </section>
 
