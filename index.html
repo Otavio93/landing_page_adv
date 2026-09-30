@@ -10,7 +10,6 @@
     <!-- Ícones via CDN (para o WhatsApp) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Define a fonte Inter como padrão */
         body { font-family: 'Inter', sans-serif; }
         /* Estilos personalizados: Cinza Chumbo/Preto e Dourado */
         .text-accent { color: #e9b752; } /* Dourado/Ouro mais claro e vibrante */
@@ -21,7 +20,49 @@
             --tw-ring-color: #e9b752;
         }
         .list-none li::before { content: none; } /* Remove marcadores padrão do Tailwind quando usado em ul */
+        .dflex {
+            display: flex;
+            align-items: start;
+            justify-content: center;
+            margin: 4em auto;
+        }
 
+        .container-one {
+            background: #6c6872;
+            height: 20em;
+            width: 20em;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container-one img {
+            position: absolute;
+            width: 173%;
+            height: 180%;
+            object-fit: cover;
+            top: 50%;
+            left: 50%;
+            transform: translate(-62%, -39%);
+            border-radius: 50%;
+        }
+
+        .container-one::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 150px;
+            background: linear-gradient(to left, #e0c3c3 10%, transparent);
+            z-index: 30;
+        }
+
+        .container-two {
+            background: #6c6872;
+            height: 43em;
+            width: 30em;
+        }
         /* Novo Estilo para a Seção Hero: Alto Contraste */
         #hero-section {
             background-color: #1a1a1a; /* Fundo escuro */
@@ -41,11 +82,12 @@
         }
         
         .hero-image-container img {
-            width: 100%;
+            /* width: 100%; */
             height: 100%;
-            object-fit: cover; /* Garante que a imagem preencha o contêiner sem distorcer */
+            /* object-fit: cover; */
             object-position: top center; /* Centraliza o rosto */
             opacity: 0.9; 
+            margin: 0 auto;
         }
 
         /* EFEITO PARA SIMULAR FUNDO TRANSPARENTE: Gradiente de Fading */
@@ -122,7 +164,6 @@
         </div>
     </header>
 
-    <!-- 2. Hero Section (Redesenhado) -->
     <section id="hero-section" class="relative text-white flex items-center">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="md:w-1/2 hero-content py-20 md:py-0">
@@ -143,6 +184,14 @@
         <div class="hero-image-container hidden md:block">
             <!-- Nova imagem com pose dinâmica. O gradiente CSS no ::after tentará simular o fundo transparente/fade -->
             <img src="../img/img1.jpeg" alt="Retrato profissional da Dra. Vitória Silveira, advogada especialista em planejamento.">
+        </div>
+    </section>
+
+    <section class="dflex">
+        <div class="container-one">
+            <img src="../img/img2.jpeg" alt="">
+        </div>
+        <div class="container-two">
         </div>
     </section>
 
